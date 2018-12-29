@@ -6,14 +6,19 @@ Example TreeSet backend for bit4mation
 
 `gradle build`
 
+#### Build Docker Image
+
+`gradle distDocker`
+
 #### Testing
 
 `gradle test`
 
 #### Running
 
-```
-gradle bootRun
-http://localhost:8080/swagger-ui.html
-```
+`gradle bootRun`
+
+#### Swagger
+[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+
 
