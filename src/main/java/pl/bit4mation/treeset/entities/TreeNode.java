@@ -41,6 +41,7 @@ public class TreeNode {
     }
 
     public Long     getId       () { return this.id; }
+    public void     setId       (Long id) { this.id = id; }
     public Integer  getNumber   () { return this.number; }
     public void     setNumber   (Integer number) { this.number = number; }
 
