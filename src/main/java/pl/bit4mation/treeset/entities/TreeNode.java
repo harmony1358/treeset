@@ -51,9 +51,4 @@ public class TreeNode {
     public Long     getParentId () { return this.parentId; }
     public void     setParentId (Long parentId) {this.parentId = parentId;}
 
-    @Override
-    public String toString () {
-        return String.format("id=%d, number=%d", id, number);
-    }
-
 }

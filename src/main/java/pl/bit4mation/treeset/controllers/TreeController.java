@@ -40,11 +40,8 @@ public class TreeController {
 
             return new ResponseEntity<TreeNode> (HttpStatus.FORBIDDEN);
 
-        } catch (Exception e) {
+        } 
 
-            return new ResponseEntity<TreeNode> (HttpStatus.INTERNAL_SERVER_ERROR);
-        
-        }
     }
 
     @ApiOperation(value = "Update TreeNode contents")
@@ -59,11 +56,7 @@ public class TreeController {
 
             return new ResponseEntity<TreeNode> (HttpStatus.FORBIDDEN);
 
-        } catch (Exception e) {
-
-            return new ResponseEntity<TreeNode> (HttpStatus.INTERNAL_SERVER_ERROR);
-
-        }
+        } 
         
         return new ResponseEntity<TreeNode> (node, HttpStatus.OK);
 

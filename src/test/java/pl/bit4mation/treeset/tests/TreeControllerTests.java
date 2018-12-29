@@ -1,5 +1,6 @@
 package pl.bit4mation.treeset.tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -151,6 +152,36 @@ public class TreeControllerTests {
         assertChildCount (subParent, 3);
         assertChildCount (parent_1, 0);
         assertChildCount (parent_2, 1);
+
+    }
+
+    @Test
+    public void should_return_root_nodes () throws Exception {
+
+        this.mockMvc.perform(get("/api/get"))
+            .andExpect(status().is(HttpStatus.OK_200))
+            .andExpect(jsonPath("$").isArray());
+
+    }
+
+    @Test
+    public void should_return_all_nodes () throws Exception {
+
+        this.mockMvc.perform(get("/api/all"))
+            .andExpect(status().is(HttpStatus.OK_200))
+            .andExpect(jsonPath("$").isArray());
+
+    }
+
+    @Test
+    public void should_properly_set_parent_on_tree_node () throws Exception {
+
+        TreeNode parent = new TreeNode(1);
+        TreeNode child = new TreeNode(2);
+
+        child.setParent(parent);
+
+        assertEquals(child.getParent(), parent);
 
     }
 
