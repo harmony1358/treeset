@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/harmony1358/treeset.svg?branch=master)](https://travis-ci.com/harmony1358/treeset)
+
 # TreeSet API
 
 Example TreeSet backend for bit4mation 
