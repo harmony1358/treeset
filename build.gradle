@@ -18,6 +18,7 @@ apply plugin: 'docker'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'jacoco'
 
 jar {
 
@@ -57,6 +58,19 @@ dependencies {
 docker {
     maintainer "Bartosz Wojcik <b.wojcik@ximago.pl>"
     baseImage "anapsix/alpine-java"
+}
+
+jacoco {
+    toolVersion = "0.8.2"
+    reportsDir = file("$buildDir/reports")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
 }
 
 task wrapper (type: Wrapper) {
