@@ -1,0 +1,11 @@
+.gradle
+.settings
+.vscode
+bin
+build
+node_modules
+.classpath
+.project
+.sts4-cache
+.idea/
+*.iml
