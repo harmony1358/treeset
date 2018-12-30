@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/harmony1358/treeset.svg?branch=master)](https://travis-ci.com/harmony1358/treeset) [![Coverage Status](https://s3.amazonaws.com/assets.coveralls.io/badges/coveralls_100.svg?service=github)](https://coveralls.io/github/harmony1358/treeset)
+[![Build Status](https://travis-ci.com/harmony1358/treeset.svg?branch=master)](https://travis-ci.com/harmony1358/treeset) [![Coverage Status](https://coveralls.io/repos/github/harmony1358/treeset/badge.svg?service=github)](https://coveralls.io/github/harmony1358/treeset)
 
 # TreeSet API
 
