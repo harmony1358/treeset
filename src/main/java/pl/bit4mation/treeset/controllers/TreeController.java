@@ -73,7 +73,7 @@ public class TreeController {
     @RequestMapping(method = RequestMethod.GET, value="/get")
     public @ResponseBody List<TreeNode> getRoot () {
 
-        return repository.findByParentId(null);
+        return repository.findByParentIdOrderById(null);
 
     }
 
@@ -81,7 +81,7 @@ public class TreeController {
     @RequestMapping(method = RequestMethod.GET, value="/get/{parentId}")
     public @ResponseBody List<TreeNode> get (@PathVariable Long parentId) {
 
-        return repository.findByParentId(parentId);
+        return repository.findByParentIdOrderById(parentId);
 
     }
 

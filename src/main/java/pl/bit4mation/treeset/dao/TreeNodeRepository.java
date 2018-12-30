@@ -2,6 +2,8 @@ package pl.bit4mation.treeset.dao;
 
 import java.util.List;
 
+import javax.persistence.OrderBy;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -15,8 +17,9 @@ import pl.bit4mation.treeset.entities.TreeNode;
 public interface TreeNodeRepository extends CrudRepository<TreeNode, Long> {
 
     TreeNode findById (Long id);
-    List<TreeNode> findByParent (TreeNode parent);
-    List<TreeNode> findByParentId (Long parentId);
+
+    List<TreeNode> findByParentOrderById (TreeNode parent);
+    List<TreeNode> findByParentIdOrderById (Long parentId);
     
     @Modifying(clearAutomatically = true)
     @Transactional(readOnly=false, isolation=Isolation.DEFAULT, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
