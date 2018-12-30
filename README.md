@@ -2,7 +2,12 @@
 
 # TreeSet API
 
-Example TreeSet backend for bit4mation 
+Example TreeSet backend for bit4mation.
+Built upon SpringBoot with embedded HSQL in-memory database. Uses JPA/Hibernate as a data layer.
+Project builds with gradle build system and uses Travis-CI for Continuous Integration.
+Tests are performed by JUnit with JaCoCo reports that are furher pushed to Coveralls.io from Travis.
+This project is ready to deploy on any env with one-click or/and by automated CD pipeline.
+Deployment was tested on Heroku.
 
 #### Building
 
