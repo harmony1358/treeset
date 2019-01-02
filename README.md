@@ -58,6 +58,11 @@ Project uses [Travis-CI](https://travis-ci.org/) for Continuous Integration and 
 Builds are triggered automatically after each commit.  
 CI pipeline configuration can be found here:  [.travis.yml](https://github.com/harmony1358/treeset/blob/master/.travis.yml)  
 One-click deployment was tested on Heroku.  
+
+## Automatic code reviews and linting  
+  
+Project performs automatic code reviews with [Codacy](https://app.codacy.com).  
+Code reviews are performed automatically during CI pipeline. 
   
 ## Running
   
