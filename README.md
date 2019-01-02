@@ -2,30 +2,76 @@
 
 # TreeSet API
 
-Example TreeSet backend for bit4mation.
-Built upon SpringBoot with embedded HSQL in-memory database. Uses JPA/Hibernate as a data layer.
-Project builds with gradle build system and uses Travis-CI for Continuous Integration.
-Tests are performed by JUnit with JaCoCo reports that are furher pushed to Coveralls.io from Travis.
-This project is ready to deploy on any env with one-click or/and by automated CD pipeline.
-Deployment was tested on Heroku.
+Example TreeSet backend for bit4mation.  
+Built upon SpringBoot with embedded HSQL in-memory database.  
+Uses JPA/Hibernate as a data layer.  
+  
+### Concept
 
-#### Building
+Project implements unidirectional tree structure basing on "parent" reference.  
+The concept assumes that tree branches will be lazily loaded by frontend to avoid deep fetch exposure.  
+Root nodes have "null" parent reference.  
 
-`gradle build`
+### Classes
+[TreeNode.java](https://github.com/harmony1358/treeset/blob/master/src/main/java/pl/bit4mation/treeset/entities/TreeNode.java)   
+Main Data entity - responsible for storing node information, such as number and parent relation  
 
-#### Build Docker Image
+[TreeNodeRepository.java](https://github.com/harmony1358/treeset/blob/master/src/main/java/pl/bit4mation/treeset/dao/TreeNodeRepository.java)  
+Spring CRUD repository template providing basing fetching and updating functionality  
+  
+[TreeController.java](https://github.com/harmony1358/treeset/blob/master/src/main/java/pl/bit4mation/treeset/controllers/TreeController.java)  
+MVC Controller exposing REST API with CRUD operations  
+  
+[SwaggerConfig.java](https://github.com/harmony1358/treeset/blob/master/src/main/java/pl/bit4mation/treeset/config/SwaggerConfig.java)  
+Configuration bean for Swagger  
+  
+[Application.java](https://github.com/harmony1358/treeset/blob/master/src/main/java/pl/bit4mation/treeset/Application.java)  
+SpringBoot Application launcher  
+  
+### API  
+  
+REST API ref is held and managed by Swagger.  Please go to [Running](#running) section for more info.
 
-`gradle distDocker`
+### Building
+  
+Project is built by "gradle" build system:  
 
-#### Testing
+`./gradlew build`
 
-`gradle test`
+### Build Docker Image
+  
+You can build docker image with gradle task:  
 
-#### Running
+`./gradlew distDocker`
 
-`gradle bootRun`
+### Testing
+  
+Project uses JUnit for testing and JaCoCo for coverage reporting. 
+Coverage reports are pushed to [Coveralls.io](https://coveralls.io/) when built on travis-ci/github  
+Running test gradle task:  
+  
+`./gradlew test`
+  
+### CI
+  
+Project uses [Travis-CI](https://travis-ci.org/) for Continuous Integration and deployment.  
+Builds are triggered automatically after each commit.  
+CI pipeline configuration can be found here:  [.travis.yml](https://github.com/harmony1358/treeset/blob/master/.travis.yml)  
+One-click deployment was tested on Heroku.  
+  
+### Running
+  
+Project can be launched locally with gradle task:    
+  
+`./gradlew bootRun`  
+  
+On production environment - docker image and binary launcher is used.  
+After launching locally you should be able to access swagger UI here:  
+  
+[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)  
 
-#### Swagger
-[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
-
-
+### Frontend  
+  
+This project has companion project with frontend WebApp.  
+Please read here: [README.md](https://github.com/harmony1358/treesetclient/blob/master/README.md) to find how to build and launch both projects together. 
+  
