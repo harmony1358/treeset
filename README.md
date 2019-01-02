@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/harmony1358/treeset.svg?branch=master)](https://travis-ci.com/harmony1358/treeset) [![Coverage Status](https://coveralls.io/repos/github/harmony1358/treeset/badge.svg?service=github)](https://coveralls.io/github/harmony1358/treeset)
+[![Build Status](https://travis-ci.com/harmony1358/treeset.svg?branch=master)](https://travis-ci.com/harmony1358/treeset) [![Coverage Status](https://coveralls.io/repos/github/harmony1358/treeset/badge.svg?service=github)](https://coveralls.io/github/harmony1358/treeset)  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d555e12a786e49b691ab2790ad28c5c9)](https://www.codacy.com/app/harmony1358/treeset?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=harmony1358/treeset&amp;utm_campaign=Badge_Grade)
 
 # TreeSet API
 
