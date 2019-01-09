@@ -41,7 +41,7 @@ public class TreeController {
     }
 
     @ApiOperation(value = "Update TreeNode contents")
-    @RequestMapping(method = RequestMethod.POST, value="/update")
+    @RequestMapping(method = RequestMethod.PUT, value="/update")
     public ResponseEntity<TreeNode> update (@RequestBody TreeNode node) {
 
         try {
@@ -59,7 +59,7 @@ public class TreeController {
     }
 
     @ApiOperation(value = "Delete TreeNode and all its descendants")
-    @RequestMapping(method = RequestMethod.POST, value="/delete/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value="/delete/{id}")
     public void delete (@PathVariable Long id) {
 
         repository.delete(id);
