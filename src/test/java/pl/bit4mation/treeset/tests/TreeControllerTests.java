@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -87,7 +89,7 @@ public class TreeControllerTests {
 
         assertChildCount (parent, 3);
 
-        this.mockMvc.perform(post("/api/delete/" + parent.getId())
+        this.mockMvc.perform(delete("/api/delete/" + parent.getId())
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().is(HttpStatus.OK_200));
 
@@ -103,7 +105,7 @@ public class TreeControllerTests {
         node = createNode(node);
         node.setParentId(777l);
 
-        this.mockMvc.perform(post("/api/update")
+        this.mockMvc.perform(put("/api/update")
             .contentType(MediaType.APPLICATION_JSON)
             .content(gson.toJson(node)))
             .andExpect(status().is(HttpStatus.FORBIDDEN_403));
@@ -140,7 +142,7 @@ public class TreeControllerTests {
 
         subParent.setParentId(parent_2.getId());
 
-        this.mockMvc.perform(post("/api/update")
+        this.mockMvc.perform(put("/api/update")
             .contentType(MediaType.APPLICATION_JSON)
             .content(gson.toJson(subParent)))
             .andExpect(status().is(HttpStatus.OK_200));
@@ -178,6 +180,22 @@ public class TreeControllerTests {
         child.setParent(parent);
 
         assertEquals(child.getParent(), parent);
+
+    }
+
+    @Test
+    public void should_not_allow_to_set_parent_id_to_self () throws Exception {
+
+        TreeNode selfTestNode = new TreeNode(50);
+        selfTestNode = createNode (selfTestNode);
+
+
+        selfTestNode.setParentId(selfTestNode.getId());
+
+        this.mockMvc.perform(put("/api/update")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(gson.toJson(selfTestNode)))
+                .andExpect(status().is(HttpStatus.FORBIDDEN_403));
 
     }
 

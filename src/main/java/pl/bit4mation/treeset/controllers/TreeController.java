@@ -16,13 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.ApiOperation;
 import pl.bit4mation.treeset.dao.TreeNodeRepository;
 import pl.bit4mation.treeset.entities.TreeNode;
+import pl.bit4mation.treeset.services.TreeService;
 
 @RestController
 @RequestMapping("api")
 public class TreeController {
 
     @Autowired
-    private TreeNodeRepository repository;
+    private TreeService treeService;
 
     @ApiOperation(value = "Create new TreeNode")
     @RequestMapping(method = RequestMethod.POST, value="/create")
@@ -30,7 +31,7 @@ public class TreeController {
 
         try {
 
-            return new ResponseEntity<TreeNode> (repository.save(node), HttpStatus.OK);
+            return new ResponseEntity<TreeNode> (treeService.create(node), HttpStatus.OK);
             
         } catch (DataIntegrityViolationException die) {
 
@@ -42,19 +43,19 @@ public class TreeController {
 
     @ApiOperation(value = "Update TreeNode contents")
     @RequestMapping(method = RequestMethod.PUT, value="/update")
-    public ResponseEntity<TreeNode> update (@RequestBody TreeNode node) {
+    public ResponseEntity<?> update (@RequestBody TreeNode node) {
 
         try {
 
-            repository.update(node);
+            treeService.update(node);
         
         } catch (DataIntegrityViolationException die) {
 
-            return new ResponseEntity<TreeNode> (HttpStatus.FORBIDDEN);
+            return new ResponseEntity<> (HttpStatus.FORBIDDEN);
 
         } 
         
-        return new ResponseEntity<TreeNode> (node, HttpStatus.OK);
+        return new ResponseEntity<> (node, HttpStatus.OK);
 
     }
 
@@ -62,14 +63,14 @@ public class TreeController {
     @RequestMapping(method = RequestMethod.DELETE, value="/delete/{id}")
     public void delete (@PathVariable Long id) {
 
-        repository.delete(id);
+        treeService.delete(id);
     }
 
     @ApiOperation(value = "Get root TreeNodes")
     @RequestMapping(method = RequestMethod.GET, value="/get")
     public @ResponseBody List<TreeNode> getRoot () {
 
-        return repository.findByParentIdOrderById(null);
+        return treeService.get(null);
 
     }
 
@@ -77,7 +78,7 @@ public class TreeController {
     @RequestMapping(method = RequestMethod.GET, value="/get/{parentId}")
     public @ResponseBody List<TreeNode> get (@PathVariable Long parentId) {
 
-        return repository.findByParentIdOrderById(parentId);
+        return treeService.get(parentId);
 
     }
 
@@ -85,7 +86,7 @@ public class TreeController {
     @RequestMapping(method = RequestMethod.GET, value = "/all")
     public @ResponseBody Iterable<TreeNode> getAll () {
 
-        return repository.findAll();
+        return treeService.getAll();
     
     }
 }
